@@ -1,3 +1,13 @@
+0.6.22 (2014-02-21)
+-------------------
+
+* Experimental AMD support (#409). Please read the documentation about it.
+
+0.6.21 (2014-01-06)
+-------------------
+
+* Disabled mobile mode on Windows Phone, since it's not needed there (#408).
+
 0.6.20 (2014-01-03)
 -------------------
 

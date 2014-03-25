@@ -1,6 +1,6 @@
 [![Build Status](https://secure.travis-ci.org/Prinzhorn/skrollr.png)](http://travis-ci.org/Prinzhorn/skrollr)
 
-skrollr 0.6.20
+skrollr 0.6.22
 =====
 
 Stand-alone **parallax scrolling** JavaScript library for **mobile (Android, iOS, etc.) and desktop** in just over **9.6k** (minified) or **4.5k** (minified + gzipped).
@@ -77,6 +77,14 @@ First of all you want to include the `skrollr.min.js` file at the bottom of your
 </body>
 ```
 
+If you are using require.js to structure your project, you can use skrollr as a module as well.
+
+```javascript
+require(['skrollr'], function(skrollr){
+	var s = skrollr.init();
+});
+```
+
 If you're familiar with CSS, you already know the `style` attribute. In order to create an animation you would need several, at least two, of them. That's what skrollr does. You use the HTML5 `data-` attributes to define multiple sets of styles (we call each of them **keyframe**) and skrollr interpolates between them.
 
 #### Let's change the background-color of a `div` starting at `#00f` when the scrollbar is at the top and ending with `#f00` when the user scrolled 500 pixels down
@@ -145,6 +153,17 @@ You just told me it doesn't work on mobile, but why does it? The answer is simpl
 ### What you need in order to support mobile browsers
 
 Starting with skrollr 0.6.0 there's just one thing you need to do: Include an element on your page with the id `skrollr-body`. That's the element we move in order to fake scrolling. The only case were you don't need a `#skrollr-body` is when using `position:fixed` exlusively. In fact the skrollr website doesn't include a `#skrollr-body` element. If you need both fixed and non-fixed (i.e. static) elements, put the static ones inside the `#skrollr-body` element.
+
+AMD
+---
+
+Starting with `0.6.22` there's experimental AMD support. Please note that only skrollr core has AMD support so far. We will update the plugins in the future.
+
+```js
+require(['skrollr'], function(skrollr){
+	skrollr.init();
+});
+```
 
 Absolute vs relative mode
 -----
@@ -350,7 +369,7 @@ The default looks like this
 
 ```js
 function() {
-	return (/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent || navigator.vendor || window.opera);
+	return (/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || navigator.vendor || window.opera);
 }
 ```
 

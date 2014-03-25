@@ -11,7 +11,7 @@
 	/*
 	 * Global api.
 	 */
-	var skrollr = window.skrollr = {
+	var skrollr = {
 		get: function() {
 			return _instance;
 		},
@@ -19,7 +19,7 @@
 		init: function(options) {
 			return _instance || new Skrollr(options);
 		},
-		VERSION: '0.6.20'
+		VERSION: '0.6.22'
 	};
 
 	//Minify optimization.
@@ -270,7 +270,7 @@
 
 		//A custom check function may be passed.
 		_isMobile = ((options.mobileCheck || function() {
-			return (/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent || navigator.vendor || window.opera);
+			return (/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || navigator.vendor || window.opera);
 		})());
 
 		if(_isMobile) {
@@ -1679,4 +1679,14 @@
 
 	//Animation frame id returned by RequestAnimationFrame (or timeout when RAF is not supported).
 	var _animFrame;
+
+	//Expose skrollr as either a global variable or a require.js module
+	if(typeof define === 'function' && define.amd) {
+		define('skrollr', function () {
+			return skrollr;
+		});
+	} else {
+		window.skrollr = skrollr;
+	}
+
 }(window, document));
